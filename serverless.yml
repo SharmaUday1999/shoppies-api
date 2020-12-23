@@ -20,13 +20,28 @@ provider:
   # the following line. Also, make sure to not
   # commit your .env.
   #
-  #environment:
-  #  SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
-
+  environment:
+    tableName: shoppiesnominations
 functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: hello
-          method: get
+  createNomination:
+      handler: createNomination.main
+      events:
+        - http:
+            path: shoppies/{id}
+            method: post
+            authorizer: aws_iam
+  getNominations:
+      handler: getNominations.main
+      events:
+        - http:
+            path: shoppies/{id}
+            method: get
+            authorizer: aws_iam
+  getAllNominations:
+      handler: getAllNominations.main
+      events:
+        - http:
+            path: shoppies/
+            method: get
+            authorizer: aws_iam
+
