@@ -30,6 +30,7 @@ functions:
         - http:
             path: shoppies/{id}
             method: post
+            cors: true
             authorizer: aws_iam
   getNominations:
       handler: getNominations.main
@@ -37,6 +38,7 @@ functions:
         - http:
             path: shoppies/{id}
             method: get
+            cors: true
             authorizer: aws_iam
   getAllNominations:
       handler: getAllNominations.main
@@ -44,5 +46,8 @@ functions:
         - http:
             path: shoppies/
             method: get
+            cors: true
             authorizer: aws_iam
-
+resources:
+  # API Gateway Errors
+  - ${file(resources/api-gateway-errors.yml)}
